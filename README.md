@@ -1,0 +1,3 @@
+# arraysobjetosdia1
+arraysobjetosdia1
+sadsdadsdad
