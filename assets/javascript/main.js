@@ -1,4 +1,10 @@
-let arregloDental =[
+document.write("<table class='default'>"
+document.write("<tr><th>Hoy</th><th>Mañana</th><th>Lunes</th></tr>")
+
+
+
+
+/* let arregloDental =[
     {
         Especialidad: 'Dental',
         Horadeatencion: '8:00',
@@ -131,4 +137,4 @@ let arregloTraumatología=[
 
     }
 
-]
+] */
