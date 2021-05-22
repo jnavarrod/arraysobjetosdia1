@@ -151,7 +151,7 @@ let cambiaEncabezado = (encabezado) => {
         return(" Rut del Paciente ")
     }
     else if (encabezado == "prevision"){
-        return( "Previsión")
+        return( " Previsión ")
     }
 
 }
