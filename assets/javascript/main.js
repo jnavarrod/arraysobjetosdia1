@@ -1,45 +1,8 @@
 
-    function start() {
-        // get the reference for the body
-        var mybody = document.getElementsByTagName("body")[0];
-
-        // creates <table> and <tbody> elements
-        mytable     = document.createElement("table");
-        mytablebody = document.createElement("tbody");
-
-        // creating all cells
-        for(var j = 0; j < 2; j++) {
-            // creates a <tr> element
-            mycurrent_row = document.createElement("tr");
-
-            for(var i = 0; i < 2; i++) {
-                // creates a <td> element
-                mycurrent_cell = document.createElement("td");
-                // creates a Text Node
-                currenttext = document.createTextNode("cell is row " + j + ", column " + i);
-                // appends the Text Node we created into the cell <td>
-                mycurrent_cell.appendChild(currenttext);
-                // appends the cell <td> into the row <tr>
-                mycurrent_row.appendChild(mycurrent_cell);
-            }
-            // appends the row <tr> into <tbody>
-            mytablebody.appendChild(mycurrent_row);
-        }
-
-        // appends <tbody> into <table>
-        mytable.appendChild(mytablebody);
-        // appends <table> into <body>
-        mybody.appendChild(mytable);
-        // sets the border attribute of mytable to 2;
-        mytable.setAttribute("border","2");
-    }
-
-
-
-/* let arregloDental =[
+let arregloDental =[
     {
         Especialidad: 'Dental',
-        Horadeatencion: '8:00',
+        horadeatencion: '8:00',
         medicoEspecialista: 'Verena Ojeda',
         nombrePaciente: 'David  Esparza Alvarado',
         RutPaciente : '11371446-8',
@@ -169,4 +132,73 @@ let arregloTraumatología=[
 
     }
 
-] */
+]
+
+let cambiaEncabezado = (encabezado) => {
+    if (encabezado == "Especialidad"){
+        return(" Especialidad ");
+    }
+    else if (encabezado == "horadeatencion"){
+        return(" Hora de Atención ");
+    }
+    else if (encabezado == "medicoEspecialista"){
+        return(" Médico Especialista ");
+    }
+    else if (encabezado == "nombrePaciente"){
+        return(" Nombre del Paciente ");
+    }
+    else if (encabezado == "RutPaciente"){
+        return(" Rut del Paciente ")
+    }
+    else if (encabezado == "prevision"){
+        return( "Previsión")
+    }
+
+}
+
+let creaTablas = (nombreArreglo) => {
+
+    let body = document.getElementsByTagName("body")[0];
+  
+    let tabla   = document.createElement("table");
+    let tblBody = document.createElement("tbody");
+
+    for (let i = 0; i < nombreArreglo.length; i++) {
+
+        if (i == 0){
+            let columna = document.createElement("tr");
+
+            for (let j = 0; j < 6; j++) {
+                let celda = document.createElement("td");
+                let encabezado = cambiaEncabezado(Object.keys(nombreArreglo[i])[j])
+                let textoCelda = document.createTextNode(encabezado);
+                celda.appendChild(textoCelda);
+                columna.appendChild(celda);
+            }
+
+         tblBody.appendChild(columna);
+        }
+        
+        let columna = document.createElement("tr");
+
+        for (let j = 0; j < 6; j++){       
+            let celda = document.createElement("td");
+            let textoCelda = document.createTextNode(Object.values(nombreArreglo[i])[j]);
+            celda.appendChild(textoCelda);
+            columna.appendChild(celda);
+        }
+  
+      tblBody.appendChild(columna);
+    }
+    
+    tabla.appendChild(tblBody);
+    body.appendChild(tabla);
+    tabla.setAttribute("border", "5");
+
+}
+
+creaTablas(arregloDental);
+document.write("<br>");
+creaTablas(arregloRadiologia);
+document.write("<br>");
+creaTablas(arregloTraumatología);
