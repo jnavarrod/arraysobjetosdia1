@@ -1,0 +1,8 @@
+table {
+    width: 70%;
+ }
+ th, td {
+    width: 10%;
+    text-align: left;
+    vertical-align: top;
+ }

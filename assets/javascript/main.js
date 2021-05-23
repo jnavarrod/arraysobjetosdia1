@@ -197,8 +197,25 @@ let creaTablas = (nombreArreglo) => {
 
 }
 
+let primeraUltimaCita = (nombreArreglo) => {
+
+    let pacientePrimeraHora = Object.values(nombreArreglo[0])[3];
+    let previsionPrimeraHora = Object.values(nombreArreglo[0])[5];
+    let pacienteUltimaHora= Object.values(nombreArreglo[(nombreArreglo.length -1)])[3];
+    let previsionUltimaHora = Object.values(nombreArreglo[(nombreArreglo.length -1)])[5];
+    return(`<p>Primera Atención: ${pacientePrimeraHora} - ${previsionPrimeraHora} | Última Atención: ${pacienteUltimaHora} - ${previsionUltimaHora}</p>`);
+}
+
+document.write(`<H1> Estadísticas Centro Médico Ñuñoa</H1>`);
+document.write("<br>");
+
+document.write(primeraUltimaCita(arregloDental));
 creaTablas(arregloDental);
 document.write("<br>");
+
+document.write(primeraUltimaCita(arregloRadiologia));
 creaTablas(arregloRadiologia);
 document.write("<br>");
+
+document.write(primeraUltimaCita(arregloTraumatología));
 creaTablas(arregloTraumatología);
