@@ -1,7 +1,8 @@
+
 let arregloDental =[
     {
         Especialidad: 'Dental',
-        Horadeatencion: '8:00',
+        horadeatencion: '8:00',
         medicoEspecialista: 'Verena Ojeda',
         nombrePaciente: 'David  Esparza Alvarado',
         RutPaciente : '11371446-8',
@@ -132,3 +133,89 @@ let arregloTraumatología=[
     }
 
 ]
+
+let cambiaEncabezado = (encabezado) => {
+    if (encabezado == "Especialidad"){
+        return(" Especialidad ");
+    }
+    else if (encabezado == "horadeatencion"){
+        return(" Hora de Atención ");
+    }
+    else if (encabezado == "medicoEspecialista"){
+        return(" Médico Especialista ");
+    }
+    else if (encabezado == "nombrePaciente"){
+        return(" Nombre del Paciente ");
+    }
+    else if (encabezado == "RutPaciente"){
+        return(" Rut del Paciente ")
+    }
+    else if (encabezado == "prevision"){
+        return( " Previsión ")
+    }
+
+}
+
+let creaTablas = (nombreArreglo) => {
+
+    let body = document.getElementsByTagName("body")[0];
+  
+    let tabla   = document.createElement("table");
+    let tblBody = document.createElement("tbody");
+
+    for (let i = 0; i < nombreArreglo.length; i++) {
+
+        if (i == 0){
+            let columna = document.createElement("tr");
+
+            for (let j = 0; j < 6; j++) {
+                let celda = document.createElement("td");
+                let encabezado = cambiaEncabezado(Object.keys(nombreArreglo[i])[j])
+                let textoCelda = document.createTextNode(encabezado);
+                celda.appendChild(textoCelda);
+                columna.appendChild(celda);
+            }
+
+         tblBody.appendChild(columna);
+        }
+        
+        let columna = document.createElement("tr");
+
+        for (let j = 0; j < 6; j++){       
+            let celda = document.createElement("td");
+            let textoCelda = document.createTextNode(Object.values(nombreArreglo[i])[j]);
+            celda.appendChild(textoCelda);
+            columna.appendChild(celda);
+        }
+  
+      tblBody.appendChild(columna);
+    }
+    
+    tabla.appendChild(tblBody);
+    body.appendChild(tabla);
+    tabla.setAttribute("border", "5");
+
+}
+
+let primeraUltimaCita = (nombreArreglo) => {
+
+    let pacientePrimeraHora = Object.values(nombreArreglo[0])[3];
+    let previsionPrimeraHora = Object.values(nombreArreglo[0])[5];
+    let pacienteUltimaHora= Object.values(nombreArreglo[(nombreArreglo.length -1)])[3];
+    let previsionUltimaHora = Object.values(nombreArreglo[(nombreArreglo.length -1)])[5];
+    return(`<p>Primera Atención: ${pacientePrimeraHora} - ${previsionPrimeraHora} | Última Atención: ${pacienteUltimaHora} - ${previsionUltimaHora}</p>`);
+}
+
+document.write(`<H1> Estadísticas Centro Médico Ñuñoa</H1>`);
+document.write("<br>");
+
+document.write(primeraUltimaCita(arregloDental));
+creaTablas(arregloDental);
+document.write("<br>");
+
+document.write(primeraUltimaCita(arregloRadiologia));
+creaTablas(arregloRadiologia);
+document.write("<br>");
+
+document.write(primeraUltimaCita(arregloTraumatología));
+creaTablas(arregloTraumatología);
